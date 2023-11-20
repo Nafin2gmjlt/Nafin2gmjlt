@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form Tabungan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form name="submit-to-google-sheet">
+  <div class="title">
+    <h2>Admin mata alit</h2>
+    <div class="alert gost">
+      <strong>Okee!!!</strong> data terkirim
+    </div>
+  <div class="box">
+  <select class="input" name="Nama" id="inputGroupSelect01">
+    <option selected>Pilih nama</option>
+    <option value="Abi">Abi</option>
+    <option value="Ageng">Ageng</option>
+    <option value="Ahmad">Ahmad</option>
+    <option value="Aji">Aji</option>
+    <option value="Alif">Alif</option>
+    <option value="Argi">Argi</option>
+    <option value="Asan">Asan</option>
+    <option value="Danu">Danu</option>
+    <option value="Dimas c">Dimas c</option>
+    <option value="Dimas k">dimas k</option>
+    <option value="Ikhsan">Iksan</option>
+    <option value="Jajang">Jajang</option>
+    <option value="Nanang">Nanang</option>
+    <option value="Rehan">Rehan</option>
+    <option value="Sahrul">sahrul</option>
+    <option value="Salam">Salam</option>
+    <option value="Tatang">Tatang</option>
+    <option value="Tio">Tio</option>
+    <option value="Zezen">Zezen</option>
+  </select>
+  
+<!-- Abi
+Ageng
+Ahmad
+Aji
+Alif
+Argi
+Asan
+Danu
+Dimas c
+Dimas k
+Iksan
+Jajang
+Nanang
+Rehan
+Salam
+Tatang
+Tio
+Zesen -->
+  
+  <input class="input" name="Nominal" type="number" placeholder="Nominal " required>
+  <input class="input" name="Kode" type="password" placeholder="Kode Operator" required>
+  </div>
+    <button type="submit">Kirim</button>
+  </div>
+    </form>
+<script>
+  const notif = document.querySelector('.alert')
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzNr9sAzd8zRtKpUTYxVxxY5pWaE6gj2-mwOa-pXOzDOwxadFSoU_A98N4dpGQesZaluw/exec'
+  const form = document.forms['submit-to-google-sheet']
+  form.addEventListener('submit', e => {
+  e.preventDefault()
+ fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => {
+      notif.classList.toggle('gost')
+      form.reset()
+      console.log('Success!', response)})
+    .catch(error => console.error('Error!', error.message))
+   })
+  </script>
+</body>
+</html>
